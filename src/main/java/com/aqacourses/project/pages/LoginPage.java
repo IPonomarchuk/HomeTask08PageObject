@@ -52,8 +52,8 @@ public class LoginPage extends AbstractPage {
      */
     public MyAccountPage login() {
         wait.until(ExpectedConditions.visibilityOf(emailTextField)).sendKeys("mystore@mailinator.com");
-        wait.until(ExpectedConditions.visibilityOf(passwordTextField)).sendKeys("mystore");
-        wait.until(ExpectedConditions.elementToBeClickable(signInButton)).click();
+        passwordTextField.sendKeys("mystore");
+        signInButton.click();
         return new MyAccountPage(driver);
     }
 

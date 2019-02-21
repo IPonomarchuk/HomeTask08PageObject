@@ -9,9 +9,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
 
-    // Web Element
+    // Web Elements
+    @FindBy(xpath = "//div/a[@class='login']")
+    private WebElement signInLink;
+
+    @FindBy(xpath = "//div/a[@class='logout']")
+    private WebElement singOutButton;
+
     @FindBy(xpath = "//div[@id='page']")
     protected WebElement divPage;
+
 
     // Instances of WebDriver and WebDriverWait
     private WebDriver driver;
@@ -27,6 +34,26 @@ public abstract class AbstractPage {
         wait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
         wait.until(ExpectedConditions.visibilityOf(divPage));
+    }
+
+    /**
+     * Click on the "Sign in" link
+     *
+     * @return new instance of LoginPage
+     */
+    public LoginPage clickSignInLink() {
+        wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
+        return new LoginPage(driver);
+    }
+
+    /**
+     * Click on the "Sign out" button
+     *
+     * @return new instance of LoginPage
+     */
+    public LoginPage logout() {
+        wait.until(ExpectedConditions.elementToBeClickable(singOutButton)).click();
+        return new LoginPage(driver);
     }
 
 }

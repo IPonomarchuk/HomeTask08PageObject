@@ -16,9 +16,6 @@ public class MyAccountPage extends AbstractPage {
     @FindBy(xpath = "//div/a[@class='account']")
     private WebElement name;
 
-    @FindBy(xpath = "//div/a[@class='logout']")
-    private WebElement singOutButton;
-
     // Instances of WebDriver and WebDriverWait
     private WebDriver driver;
     private WebDriverWait wait;
@@ -42,13 +39,4 @@ public class MyAccountPage extends AbstractPage {
         Assert.assertEquals("Name isn't correct", MY_NAME, name.getText());
     }
 
-    /**
-     * Click on the "Sign out" button
-     *
-     * @return new instance of LoginPage
-     */
-    public LoginPage logout() {
-        wait.until(ExpectedConditions.elementToBeClickable(singOutButton)).click();
-        return new LoginPage(driver);
-    }
 }

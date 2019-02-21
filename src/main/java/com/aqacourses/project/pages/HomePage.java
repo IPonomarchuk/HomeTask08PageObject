@@ -8,10 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends AbstractPage {
 
-    // Web Element
-    @FindBy(xpath = "//div/a[@class='login']")
-    private WebElement signInLink;
-
     // Instances of WebDriver and WebDriverWait
     private WebDriver driver;
     private WebDriverWait wait;
@@ -26,16 +22,6 @@ public class HomePage extends AbstractPage {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(divPage));
-    }
-
-    /**
-     * Click on the "Sign in" link
-     *
-     * @return new instance of LoginPage
-     */
-    public LoginPage clickSignInLink() {
-        wait.until(ExpectedConditions.elementToBeClickable(signInLink)).click();
-        return new LoginPage(driver);
     }
 
 }
